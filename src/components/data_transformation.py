@@ -9,6 +9,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder,StandardScaler
 from src.exception import CustomException
 from src.logger import logging
+from src.utils import save_object
+
 
 @dataclass
 class DataTransformationConfig:
@@ -20,7 +22,7 @@ class DataTransformation:
 
     def get_data_tranformer_object(self):
         try:
-            numericals_columns=['writing_score','reading_score']
+            numerical_columns=['writing_score','reading_score']
             categorical_columns=[
                 'gender',
                 'race_ethinicity',
@@ -36,7 +38,7 @@ class DataTransformation:
                 ]
             )
 
-            cat_pipeline(
+            cat_pipeline=Pipeline(
                 steps=[
                     ("imputer",SimpleImputer(strategy="most_frequent")),
                     ("one_hot_enoder",OneHotEncoder()),
@@ -45,12 +47,12 @@ class DataTransformation:
             )
             
             logging.info(f"numerical columns :{numerical_columns}")
-            loggin.info(f"categorical columns: {categorical_columns}")
+            logging.info(f"categorical columns: {categorical_columns}")
 
-            preprocessor=ColumnTranformer(
+            preprocessor=ColumnTransformer(
                 [
                     ("num_pipeline",num_pipeline,numerical_columns)
-                    ("cat_pipeline",cat_pipleine,categorical_columns)
+                    ("cat_pipeline",cat_pipeline,categorical_columns)
                 ]
             )
 
