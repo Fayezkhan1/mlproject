@@ -9,7 +9,7 @@ def error_fun(error,error_details:sys):
 
     return error_message
 
-class CustomeException(Exception):
+class CustomException(Exception):
     def __init__(self,error_message,error_details:sys):
 
         super().__init__(error_message)
