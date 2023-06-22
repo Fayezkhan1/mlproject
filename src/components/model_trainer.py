@@ -44,5 +44,6 @@ class ModelTrainer:
             }
             model_report :dict=evaluate_models(X_train=X_train,y_train=y_train,x_test=X_test,y_test=y_test,meodels=models)
             
+            best_model_score=max(sorted(model_report.values()))
         except:
             pass
