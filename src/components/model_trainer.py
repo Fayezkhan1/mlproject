@@ -42,7 +42,7 @@ class ModelTrainer:
                 "CatBoosting Regressor": CatBoostRegressor(verbose=False),
                 "AdaBoost Regressor": AdaBoostRegressor(),
             }
-
+            model_report :dict=evaluate_models(X_train=X_train,y_train=y_train,x_test=X_test,y_test=y_test,meodels=models)
             
         except:
             pass
